@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 let productHTML = '';
@@ -59,30 +59,21 @@ products.forEach((product)=>{
   `;
 });
 
-document.querySelector('.js-products-grid').innerHTML = productHTML;
 
-document.querySelectorAll('.js-add-to-cart').forEach((addToCartElement)=>{
-  addToCartElement.addEventListener('click',()=>{
-    let matchingItem;
-    cart.forEach((cartObject)=>{
-      if(cartObject.id === addToCartElement.dataset.productId){
-        matchingItem = cartObject;
-      }
-    });
-    if(matchingItem){
-      matchingItem.quantity+=1;
-    }
-    else{
-      cart.push({
-        id: addToCartElement.dataset.productId,
-        quantity:1
-      });
-    }
-    let cartQuantity = 0;
+function updateCartQuantity(){
+  let cartQuantity = 0;
     cart.forEach((cartObject)=>{
       cartQuantity += cartObject.quantity;
     });
     document.querySelector('.js-cart-quantity').innerHTML = `${cartQuantity}`;
+}
+document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+document.querySelectorAll('.js-add-to-cart').forEach((addToCartElement)=>{
+  addToCartElement.addEventListener('click',()=>{
+    
+    addToCart(addToCartElement);
+    updateCartQuantity();
 
   });
 });
