@@ -1,5 +1,6 @@
 import {cart} from '../data/cart.js';
 import {products} from '../data/products.js';
+import {formatCurrencey} from '../util/money.js';
 
 let matchingItem;
 let cartHtml='';
@@ -31,7 +32,7 @@ function updateCart(matchingItem,cartObject){
           ${matchingItem.name}
         </div>
         <div class="product-price">
-          $${(matchingItem.priceCents / 100).toFixed(2)}
+          $${formatCurrencey(matchingItem.priceCents)}
         </div>
         <div class="product-quantity">
           <span>
