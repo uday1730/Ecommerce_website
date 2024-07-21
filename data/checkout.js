@@ -1,6 +1,6 @@
 import {cart} from '../data/cart.js';
 import {products} from '../data/products.js';
-import {formatCurrencey} from '../util/money.js';
+import {formatCurrencey} from '../utils/money.js';
 
 let matchingItem;
 let cartHtml='';
