@@ -1,6 +1,8 @@
 import {cart, removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrencey} from '../utils/money.js';
+
+hello('Uday');
 let matchingItem;
 let cartHtml='';
 
