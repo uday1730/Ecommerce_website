@@ -6,7 +6,7 @@ let cartHtml='';
 
 cart.forEach((cartObject)=>{
   
-  let productId = cartObject.productId;
+  let productId = cartObject.id;
   products.forEach((productObject)=>{
     if(productId === productObject.id){
       matchingItem = productObject;
@@ -105,8 +105,11 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
     link.addEventListener('click',()=>{
       const productId = link.dataset.deleteButtonId;
       console.log(productId);
-      document.querySelector(`.js-cart-element-${productId}`).remove();
+      
       removeFromCart(productId);
+
+      document.querySelector(`.js-cart-element-${productId}`).remove();
+
       console.log(cart);
   });
 });
