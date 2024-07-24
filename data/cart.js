@@ -2,10 +2,12 @@ export let cart  = JSON.parse(localStorage.getItem('cart'))
 if(!cart){
   cart = [{
     id:'8c9c52b5-5a19-4bcb-a5d1-158a74287c53',
-    quantity:1
+    quantity:1,
+    deliveryOptionId:'1'
   },{
     id:'3ebe75dc-64d2-4137-8860-1f5a963e534b',
-    quantity:1
+    quantity:1,
+    deliveryOptionId:'2'
   }];
 }
 
@@ -27,7 +29,8 @@ export function addToCart(addToCartElement){
     else{
       cart.push({
         id: `${addToCartElement.dataset.productId}`,
-        quantity:1
+        quantity:1,
+        deliveryOptionId:'1'
       });
     }
     saveToStorage();
@@ -40,3 +43,5 @@ export function removeFromCart(productId){
     }
   });
 }
+
+localStorage.removeItem('carts');
