@@ -1,11 +1,11 @@
-import {cart, removeFromCart, updateDeliveryDate} from '../data/cart.js';
-import {products} from '../data/products.js';
-import {formatCurrencey} from '../utils/money.js';
+import {cart, removeFromCart, updateDeliveryDate} from '../../data/cart.js';
+import {products} from '../../data/products.js';
+import {formatCurrencey} from '../../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryOptions} from './deliveryOptions.js';
+import {deliveryOptions} from '../../data/deliveryOptions.js';
 
 
-function renderCheckoutPage(){
+export function renderCheckoutPage(){
   let matchingItem;
   let cartHtml='';
 cart.forEach((cartObject)=>{
@@ -131,4 +131,3 @@ document.querySelectorAll('.js-delivery-option').forEach((element)=>{
   });
 });
 }
-renderCheckoutPage();
