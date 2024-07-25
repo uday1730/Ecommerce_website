@@ -52,6 +52,5 @@ export function updateDeliveryDate(productId,deliveryId){
     }
   });
   matchingElement.deliveryOptionId = deliveryId;
-  console.log(matchingElement.deliveryOptionId);
   saveToStorage();
 }

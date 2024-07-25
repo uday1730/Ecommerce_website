@@ -5,10 +5,9 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions} from './deliveryOptions.js';
 
 
-let matchingItem;
-let cartHtml='';
-
-
+function renderCheckoutPage(){
+  let matchingItem;
+  let cartHtml='';
 cart.forEach((cartObject)=>{
   
   let productId = cartObject.id;
@@ -30,13 +29,6 @@ cart.forEach((cartObject)=>{
 
   const deliveryDate = dayjs().add(deliveryObject.deliveryDays,'days').format('dddd, MMMM D');
 
-  updateCart(matchingItem,cartObject,deliveryDate);
-
-});
-
-
-function updateCart(matchingItem,cartObject,deliveryDate){
-  
   cartHtml += `<div class="cart-item-container js-cart-element-${matchingItem.id}">
   <div class="delivery-date js-delivery-date">
     Delivery date: ${deliveryDate}
@@ -79,7 +71,9 @@ function updateCart(matchingItem,cartObject,deliveryDate){
   </div>`;
 
   document.querySelector('.js-order-summary').innerHTML = cartHtml;
-}
+
+});
+
 
 
 function displayDeliveryDate(matchingItem,cartObject){
@@ -120,13 +114,11 @@ function displayDeliveryDate(matchingItem,cartObject){
 document.querySelectorAll('.js-delete-button').forEach((link)=>{
     link.addEventListener('click',()=>{
       const productId = link.dataset.deleteButtonId;
-      console.log(productId);
       
       removeFromCart(productId);
 
       document.querySelector(`.js-cart-element-${productId}`).remove();
 
-      console.log(cart);
   });
 });
 
@@ -134,6 +126,9 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
 document.querySelectorAll('.js-delivery-option').forEach((element)=>{
   element.addEventListener('click',()=>{
     let {productId,deliveryId} = element.dataset;
-    updateDeliveryDate(productId,deliveryId)
+    updateDeliveryDate(productId,deliveryId);
+    renderCheckoutPage();
   });
 });
+}
+renderCheckoutPage();
