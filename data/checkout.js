@@ -1,4 +1,4 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, updateDeliveryDate} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrencey} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -27,7 +27,7 @@ cart.forEach((cartObject)=>{
       deliveryObject = deliveryOptionsObject;
     }
   });
-  
+
   const deliveryDate = dayjs().add(deliveryObject.deliveryDays,'days').format('dddd, MMMM D');
 
   updateCart(matchingItem,cartObject,deliveryDate);
@@ -92,7 +92,10 @@ function displayDeliveryDate(matchingItem,cartObject){
 
 
     deliveryOptionsHTML +=`
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option"
+      data-product-id="${matchingItem.id}"
+      data-delivery-id="${deliveryOption.id}"
+      >
         <input type="radio"
           ${isChecked ? 'checked' : ''}
           class="delivery-option-input"
@@ -127,3 +130,10 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
   });
 });
 
+
+document.querySelectorAll('.js-delivery-option').forEach((element)=>{
+  element.addEventListener('click',()=>{
+    let {productId,deliveryId} = element.dataset;
+    updateDeliveryDate(productId,deliveryId)
+  });
+});

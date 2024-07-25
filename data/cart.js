@@ -44,4 +44,14 @@ export function removeFromCart(productId){
   });
 }
 
-localStorage.removeItem('carts');
+export function updateDeliveryDate(productId,deliveryId){
+  let matchingElement;
+  cart.forEach((cartObject)=>{
+    if(cartObject.id === productId){
+      matchingElement = cartObject;
+    }
+  });
+  matchingElement.deliveryOptionId = deliveryId;
+  console.log(matchingElement.deliveryOptionId);
+  saveToStorage();
+}
