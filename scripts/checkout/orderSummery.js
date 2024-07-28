@@ -1,31 +1,19 @@
 import {cart, removeFromCart, updateDeliveryDate} from '../../data/cart.js';
-import {products} from '../../data/products.js';
+import {getProduct} from '../../data/products.js';
 import {formatCurrencey} from '../../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryOptions} from '../../data/deliveryOptions.js';
+import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
+import {renderPaymentDetails} from '../checkout/paymentSummery.js';
 
 
 export function renderCheckoutPage(){
-  let matchingItem;
   let cartHtml='';
 cart.forEach((cartObject)=>{
   
   let productId = cartObject.id;
-  products.forEach((productObject)=>{
-    if(productId === productObject.id){
-      matchingItem = productObject;
-    }
-    
-  });
-
-
+  const matchingItem = getProduct(productId);
   const deliveryOptionId = cartObject.deliveryOptionId;
-  let deliveryObject;
-  deliveryOptions.forEach((deliveryOptionsObject)=>{
-    if(deliveryOptionId === deliveryOptionsObject.id){
-      deliveryObject = deliveryOptionsObject;
-    }
-  });
+  const deliveryObject = getDeliveryOption(deliveryOptionId);
 
   const deliveryDate = dayjs().add(deliveryObject.deliveryDays,'days').format('dddd, MMMM D');
 
@@ -117,6 +105,8 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
       
       removeFromCart(productId);
 
+      renderPaymentDetails();
+
       document.querySelector(`.js-cart-element-${productId}`).remove();
 
   });
@@ -128,6 +118,7 @@ document.querySelectorAll('.js-delivery-option').forEach((element)=>{
     let {productId,deliveryId} = element.dataset;
     updateDeliveryDate(productId,deliveryId);
     renderCheckoutPage();
+    renderPaymentDetails();
   });
 });
 }
