@@ -1,6 +1,6 @@
 import { formatCurrencey } from "../money.js";
 
-console.log("Test Suite : formatCurrencey");
+console.log("test suite : formatCurrencey");
 
 console.log('converts cents to dollers');
 if(formatCurrencey(2095) === '20.95'){
