@@ -17,7 +17,10 @@ cart.forEach((cartObject)=>{
 
   const deliveryDate = dayjs().add(deliveryObject.deliveryDays,'days').format('dddd, MMMM D');
 
-  cartHtml += `<div class="cart-item-container js-cart-element-${matchingItem.id}">
+  cartHtml += `<div class="cart-item-container 
+  js-cart-item-container
+  js-item-container-${matchingItem.id}
+  js-cart-element-${matchingItem.id}">
   <div class="delivery-date js-delivery-date">
     Delivery date: ${deliveryDate}
   </div>
@@ -33,7 +36,9 @@ cart.forEach((cartObject)=>{
         <div class="product-price">
           $${formatCurrencey(matchingItem.priceCents)}
         </div>
-        <div class="product-quantity">
+        <div class="product-quantity
+        js-quantity-${matchingItem.id}
+        ">
           <span>
             Quantity: <span class="quantity-label">${cartObject.quantity}</span>
           </span>
@@ -41,7 +46,9 @@ cart.forEach((cartObject)=>{
             Update
           </span>
           <span class="delete-quantity-link link-primary
-          js-delete-button"
+          js-delete-button
+          js-delete-button-${matchingItem.id}
+          "
           data-delete-button-id=${matchingItem.id}
           >
             Delete
