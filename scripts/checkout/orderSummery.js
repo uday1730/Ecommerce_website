@@ -1,4 +1,4 @@
-import {cart, removeFromCart, updateDeliveryDate} from '../../data/cart.js';
+import {cart} from '../../data/cart.js';
 import {getProduct} from '../../data/products.js';
 import {formatCurrencey} from '../../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -8,7 +8,7 @@ import {renderPaymentDetails} from '../checkout/paymentSummery.js';
 
 export function renderCheckoutPage(){
   let cartHtml='';
-cart.forEach((cartObject)=>{
+  cart.cartItems.forEach((cartObject)=>{
   
   let productId = cartObject.id;
   const matchingItem = getProduct(productId);
@@ -110,7 +110,7 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
     link.addEventListener('click',()=>{
       const productId = link.dataset.deleteButtonId;
       
-      removeFromCart(productId);
+      cart.removeFromCart(productId);
 
       renderPaymentDetails();
 
@@ -123,7 +123,7 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
 document.querySelectorAll('.js-delivery-option').forEach((element)=>{
   element.addEventListener('click',()=>{
     let {productId,deliveryId} = element.dataset;
-    updateDeliveryDate(productId,deliveryId);
+    cart.updateDeliveryDate(productId,deliveryId);
     renderCheckoutPage();
     renderPaymentDetails();
   });
