@@ -1,6 +1,6 @@
 import {cart} from '../data/cart.js';
 
-import {products,Product} from '../data/products.js';
+import {products/*, Clothing*/} from '../data/products.js';
 
 let productHTML = '';
 
@@ -43,6 +43,13 @@ products.forEach((product)=>{
           <option value="10">10</option>
         </select>
       </div>
+
+      ${
+        //product instanceof Clothing ? product.getSizeChartLink() : '' 
+        ''       
+      }
+
+      ${product.getSizeChartLink()}
 
       <div class="product-spacer"></div>
 
