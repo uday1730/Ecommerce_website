@@ -1,4 +1,4 @@
-import { loadFromStorage,cart } from '../../../data/cart.js';
+import { cart } from '../../../data/cart.js';
 import {renderCheckoutPage} from '../../../scripts/checkout/orderSummery.js';
 describe('test suite: renderCheckoutPage',()=>{
   const product1 = '8c9c52b5-5a19-4bcb-a5d1-158a74287c53';
@@ -18,8 +18,8 @@ describe('test suite: renderCheckoutPage',()=>{
       }]);
     });
 
-    loadFromStorage();
-
+    cart.loadFromStorage();
+    
     document.querySelector('.js-order-summery-test').innerHTML=`
     <div class='js-order-summary'></div>
     <div class='js-payment-summary'></div>
@@ -57,9 +57,9 @@ describe('test suite: renderCheckoutPage',()=>{
       document.querySelector(`.js-item-container-${product2}`)
     ).not.toEqual(null);
 
-    expect(cart[0].id).toEqual(product2);
+    expect(cart.cartItems[0].id).toEqual(product2);
 
-    cart.forEach((cartObject)=>{
+    cart.cartItems.forEach((cartObject)=>{
       expect(cartObject.id).not.toEqual(product1);
     });
   });
