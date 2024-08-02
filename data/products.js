@@ -11,7 +11,7 @@ export function getProduct(productId){
   return matchingItem
 }
 
-class Product {
+export class Product {
   id;
   image;
   name;
@@ -27,13 +27,14 @@ class Product {
   }
 
   getStarsUrl(){
-    return `images/ratings/rating-${product.rating.stars * 10}.png`;
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
 
   getPrice(){
-    return `$${formatCurrencey(product.priceCents)}`;
+    return `$${formatCurrencey(this.priceCents)}`;
   }
 }
+
 
 
 export const products = [
