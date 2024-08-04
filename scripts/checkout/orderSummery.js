@@ -10,7 +10,7 @@ export function renderCheckoutPage(){
   let cartHtml='';
   cart.cartItems.forEach((cartObject)=>{
   
-  let productId = cartObject.id;
+  let productId = cartObject.productId;
   const matchingItem = getProduct(productId);
   const deliveryOptionId = cartObject.deliveryOptionId;
   const deliveryObject = getDeliveryOption(deliveryOptionId);
@@ -82,7 +82,7 @@ function displayDeliveryDate(matchingItem,cartObject){
 
     deliveryOptionsHTML +=`
       <div class="delivery-option js-delivery-option"
-      data-product-id="${matchingItem.id}"
+      data-product-value-id="${matchingItem.id}"
       data-delivery-id="${deliveryOption.id}"
       >
         <input type="radio"
@@ -108,13 +108,13 @@ function displayDeliveryDate(matchingItem,cartObject){
 
 document.querySelectorAll('.js-delete-button').forEach((link)=>{
     link.addEventListener('click',()=>{
-      const productId = link.dataset.deleteButtonId;
+      const productIdForDelete = link.dataset.deleteButtonId;
       
-      cart.removeFromCart(productId);
+      cart.removeFromCart(productIdForDelete);
 
       renderPaymentDetails();
 
-      document.querySelector(`.js-cart-element-${productId}`).remove();
+      document.querySelector(`.js-cart-element-${productIdForDelete}`).remove();
 
   });
 });
@@ -122,8 +122,8 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
 
 document.querySelectorAll('.js-delivery-option').forEach((element)=>{
   element.addEventListener('click',()=>{
-    let {productId,deliveryId} = element.dataset;
-    cart.updateDeliveryDate(productId,deliveryId);
+    let {productValueId,deliveryId} = element.dataset;
+    cart.updateDeliveryDate(productValueId,deliveryId);
     renderCheckoutPage();
     renderPaymentDetails();
   });

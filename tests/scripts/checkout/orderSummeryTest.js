@@ -16,11 +16,11 @@ describe('test suite: renderCheckoutPage',()=>{
     spyOn(localStorage,'setItem');
     spyOn(localStorage,'getItem').and.callFake(()=>{
       return JSON.stringify([{
-        id:product1,
+        productId:product1,
         quantity:1,
         deliveryOptionId:'1'
       },{
-        id:product2,
+        productId:product2,
         quantity:2,
         deliveryOptionId:'2'
       }]);
@@ -65,10 +65,10 @@ describe('test suite: renderCheckoutPage',()=>{
       document.querySelector(`.js-item-container-${product2}`)
     ).not.toEqual(null);
 
-    expect(cart.cartItems[0].id).toEqual(product2);
+    expect(cart.cartItems[0].productId).toEqual(product2);
 
     cart.cartItems.forEach((cartObject)=>{
-      expect(cartObject.id).not.toEqual(product1);
+      expect(cartObject.productId).not.toEqual(product1);
     });
   });
   afterEach(()=>{
