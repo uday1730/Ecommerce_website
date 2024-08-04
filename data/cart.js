@@ -68,6 +68,7 @@ class Cart{
 }
 export const cart = new Cart('cart-oops');
 
+
 export function loadCart(fun){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',()=>{

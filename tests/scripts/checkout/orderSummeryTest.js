@@ -1,13 +1,13 @@
 import { cart } from '../../../data/cart.js';
 import {renderCheckoutPage} from '../../../scripts/checkout/orderSummery.js';
-import { loadProducts } from '../../../data/products.js';
+import { loadProducts,loadProductsFetch } from '../../../data/products.js';
 
 describe('test suite: renderCheckoutPage',()=>{
   const product1 = '8c9c52b5-5a19-4bcb-a5d1-158a74287c53';
   const product2 = '3ebe75dc-64d2-4137-8860-1f5a963e534b';
 
   beforeAll((done)=>{
-    loadProducts(()=>{
+    loadProductsFetch().then(()=>{
       done();
     });
   });
