@@ -68,6 +68,7 @@ export function loadProducts(callbackFunction){
         return new Product(productDetails);
       }
     });
+    console.log("loadProducts");
     callbackFunction();
   });
 
