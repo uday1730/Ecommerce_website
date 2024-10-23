@@ -17,9 +17,9 @@ async function loadPage(){
       //reject('error4');
       //throw 'error3'; (throw doesnt work as its in call back which is called in future)
       resolve();
+      });
     });
-    });
-   }
+  }
   catch{
     console.log("Unexpected Error.\nPlease try again 😊");
   }
