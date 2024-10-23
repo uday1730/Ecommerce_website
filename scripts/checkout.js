@@ -13,7 +13,7 @@ async function loadPage(){
     await loadProductsFetch();
     await new Promise((resolve,reject)=>{
       //throw 'error2';
-     loadCart(()=>{
+      loadCart(()=>{
       //reject('error4');
       //throw 'error3'; (throw doesnt work as its in call back which is called in future)
       resolve();
