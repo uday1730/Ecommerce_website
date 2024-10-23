@@ -12,7 +12,9 @@ export function cart_items_number_fun(){
 }
 
 export function renderCheckoutPage(){
+  <p>
   console.log(cart);
+  </p>
   let cartHtml='';
   cart.cartItems.forEach((cartObject)=>{
   
