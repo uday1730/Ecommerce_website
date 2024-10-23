@@ -93,7 +93,9 @@ export function loadProducts(callbackFunction){
         return new Product(productDetails);
       }
     });
-    callbackFunction();
+    if (callbackFunction){
+      callbackFunction();
+    }
   });
 
   xhr.addEventListener('error',()=>{
