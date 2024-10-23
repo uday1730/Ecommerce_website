@@ -9,14 +9,12 @@ import '../data/cart-class.js';
 
 async function loadPage(){
   try{
-    //throw 'error';
+
     await loadProductsFetch();
     await new Promise((resolve,reject)=>{
-      //throw 'error2';
+
       loadCart(()=>{
-      //reject('error4');
-      //throw 'error3'; (throw doesnt work as its in call back which is called in future)
-      resolve();
+        resolve();
       });
     });
   }
@@ -30,6 +28,7 @@ async function loadPage(){
 
 }
 loadPage().then(()=>{console.log('Displayed')});
+
 /*
 Promise.all([
   loadProductsFetch(),
