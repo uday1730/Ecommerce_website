@@ -117,8 +117,6 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
       
       cart.removeFromCart(productIdForDelete);
 
-      cart_items_number_fun();
-      
       renderPaymentDetails();
 
       document.querySelector(`.js-cart-element-${productIdForDelete}`).remove();
