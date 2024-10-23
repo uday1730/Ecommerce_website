@@ -31,7 +31,7 @@ loadPage().then(()=>{console.log('Displayed')});
 */
 
 
-
+/*
 Promise.all([
   loadProductsFetch(),
   new Promise((resolve)=>{
@@ -43,14 +43,14 @@ Promise.all([
   renderCheckoutPage();
   renderPaymentDetails();
 });
+*/
 
 
 
-/*Using call-back which increases nesting of code
+
 loadProducts(()=>{
   loadCart(()=>{
     renderCheckoutPage();
     renderPaymentDetails();  
   })
 });
-*/
