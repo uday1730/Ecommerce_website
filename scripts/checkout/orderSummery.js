@@ -12,6 +12,7 @@ export function cart_items_number_fun(){
 }
 
 export function renderCheckoutPage(){
+  console.log(cart);
   let cartHtml='';
   cart.cartItems.forEach((cartObject)=>{
   
