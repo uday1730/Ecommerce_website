@@ -12,6 +12,7 @@ export function cart_items_number_fun(){
 }
 
 export function renderCheckoutPage(){
+  let cartHtml="";
   cart.cartItems.forEach((cartObject)=>{
   
   let productId = cartObject.productId;
