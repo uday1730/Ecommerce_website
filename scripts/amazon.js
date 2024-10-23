@@ -7,6 +7,7 @@ let productHTML = '';
 loadProducts(renderProductsGrid);
 
 function renderProductsGrid(){
+  updateCartQuantity();
   products.forEach((product)=>{
     productHTML+=`
       <div class="product-container">
@@ -71,10 +72,7 @@ function renderProductsGrid(){
 
   function updateCartQuantity(){
     let cartQuantity = 0;
-      cart.cartItems.forEach((cartObject)=>{
-        cartQuantity += cartObject.quantity;
-      });
-      document.querySelector('.js-cart-quantity').innerHTML = `${cartQuantity}`;
+    document.querySelector('.js-cart-quantity').innerHTML = `${cart.cartItems.length}`;
   }
   
   document.querySelector('.js-products-grid').innerHTML = productHTML;

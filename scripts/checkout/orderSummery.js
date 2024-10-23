@@ -5,6 +5,11 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import {renderPaymentDetails} from '../checkout/paymentSummery.js';
 
+export function cart_items_number_fun(){
+  let cart_items_number = cart.cartItems.length; 
+  document.querySelector('.checkout-items-number').innerHTML = `${cart_items_number} items`;
+  
+}
 
 export function renderCheckoutPage(){
   let cartHtml='';
@@ -67,6 +72,7 @@ export function renderCheckoutPage(){
 
   document.querySelector('.js-order-summary').innerHTML = cartHtml;
 
+  cart_items_number_fun();
 });
 
 
@@ -112,6 +118,8 @@ document.querySelectorAll('.js-delete-button').forEach((link)=>{
       
       cart.removeFromCart(productIdForDelete);
 
+      cart_items_number_fun();
+      
       renderPaymentDetails();
 
       document.querySelector(`.js-cart-element-${productIdForDelete}`).remove();

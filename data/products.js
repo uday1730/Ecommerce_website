@@ -8,7 +8,7 @@ export function getProduct(productId){
     }
     
   });
-  return matchingItem
+  return matchingItem;
 }
 //
 export class Product {
@@ -93,8 +93,7 @@ export function loadProducts(callbackFunction){
         return new Product(productDetails);
       }
     });
-    console.log("loadProducts");
-    //callbackFunction();
+    callbackFunction();
   });
 
   xhr.addEventListener('error',()=>{
@@ -105,7 +104,7 @@ export function loadProducts(callbackFunction){
 
 }
 
-//loadProducts();
+loadProducts();
 
 /*
 export const products = [

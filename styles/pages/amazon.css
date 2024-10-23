@@ -23,7 +23,7 @@
    will divide the grid into 7 columns instead of 8. */
 @media (max-width: 2000px) {
   .products-grid {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
@@ -31,31 +31,31 @@
    less, we will divide the grid into 6 columns. */
 @media (max-width: 1600px) {
   .products-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
 @media (max-width: 1300px) {
   .products-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 1000px) {
   .products-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 800px) {
   .products-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 575px) {
   .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -66,6 +66,7 @@
 }
 
 .product-container {
+
   padding-top: 40px;
   padding-bottom: 25px;
   padding-left: 25px;
@@ -82,7 +83,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 180px;
   margin-bottom: 20px;
 }
@@ -152,5 +152,5 @@
 .add-to-cart-button {
   width: 100%;
   padding: 8px;
-  border-radius: 50px;
+  border-radius: 10px;
 }
