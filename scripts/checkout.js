@@ -8,6 +8,7 @@ import '../data/cart-class.js';
 
 
 async function loadPage(){
+  /*
   try{
     //throw 'error';
     await loadProductsFetch();
@@ -23,6 +24,7 @@ async function loadPage(){
   catch{
     console.log("Unexpected Error.\nPlease try again 😊");
   }
+  */
   cart_items_number_fun();
   renderCheckoutPage();
   renderPaymentDetails();  
