@@ -1,4 +1,4 @@
-console.log("testing");
+console.log("testing in progress...");
 import {renderCheckoutPage} from '../scripts/checkout/orderSummery.js';
 import {renderPaymentDetails} from '../scripts/checkout/paymentSummery.js';
 import {loadProducts,loadProductsFetch, products} from '../data/products.js';
