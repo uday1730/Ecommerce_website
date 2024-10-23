@@ -1,4 +1,4 @@
-import {renderCheckoutPage, cart_items_number_fun} from './checkout/orderSummery.js';
+import {renderCheckoutPage} from './checkout/orderSummery.js';
 import {renderPaymentDetails} from './checkout/paymentSummery.js';
 import {loadProducts,loadProductsFetch, products} from '../data/products.js';
 import {loadCart} from '../data/cart.js';
