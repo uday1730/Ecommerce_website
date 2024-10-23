@@ -81,7 +81,7 @@ loadProductsFetch().then(()=>{
 });
 */
 
-export function loadProducts(){
+export function loadProducts(callbackFunction){
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load',()=>{
@@ -93,6 +93,7 @@ export function loadProducts(){
         return new Product(productDetails);
       }
     });
+    callbackFunction();
   });
 
   xhr.addEventListener('error',()=>{

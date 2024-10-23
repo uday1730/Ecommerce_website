@@ -71,8 +71,7 @@ export function renderCheckoutPage(){
   </div>`;
 
   document.querySelector('.js-order-summary').innerHTML = cartHtml;
-  
-  cart_items_number_fun();
+
 });
 
 
