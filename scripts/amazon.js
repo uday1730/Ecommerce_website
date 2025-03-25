@@ -7,7 +7,6 @@ let productHTML = '';
 //loadProducts(renderProductsGrid);
 
 function renderProductsGrid(){
-  //updateCartQuantity();
   products.forEach((product)=>{
     productHTML+=`
       <div class="product-container">
@@ -52,8 +51,6 @@ function renderProductsGrid(){
           //product instanceof Clothing ? product.getSizeChartLink() : '' 
           ''       
         }
-
-
         
 
 
@@ -73,20 +70,13 @@ function renderProductsGrid(){
 
   document.querySelector('.js-products-grid').innerHTML = productHTML;
 
- /*function updateCartQuantity(){
-    let cartQuantity = 0;
-    document.querySelector('.js-cart-quantity').innerHTML = `${cart.cartItems.length}`;
+  let cartQuantity = 0;
+
+  function updateCartQuantity(){
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
   }
-  
+  updateCartQuantity();
 
-  document.querySelectorAll('.js-add-to-cart').forEach((addToCartElement)=>{
-    addToCartElement.addEventListener('click',()=>{
-      let productId = addToCartElement.dataset.productId;
-      cart.addToCart(productId);
-      updateCartQuantity();
-
-    });
-  });*/
 
   document.querySelectorAll('.js-add-to-cart').forEach((element)=>{
     element.addEventListener('click',()=>{
@@ -103,9 +93,14 @@ function renderProductsGrid(){
           quantity: 1
         });
       }
-      console.log(cart);
+      cartQuantity += 1;
+      updateCartQuantity();
     });
   });
+
+  
+
+  
 }
 
 renderProductsGrid();
