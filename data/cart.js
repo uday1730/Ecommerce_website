@@ -7,6 +7,7 @@ class Cart{
     this.#localStorageKey = localStorageKey;
     this.loadFromStorage();
   }
+  
   loadFromStorage(){
     this.cartItems  = JSON.parse(localStorage.getItem(this.#localStorageKey))
     if(!this.cartItems){
@@ -28,22 +29,22 @@ class Cart{
 
   addToCart(productId1){
     let matchingItem;
-      this.cartItems.forEach((cartObject)=>{
-        if(cartObject.productId === productId1){
-          matchingItem = cartObject;
-        }
+    this.cartItems.forEach((cartObject)=>{
+      if(cartObject.productId === productId1){
+        matchingItem = cartObject;
+      }
+    });
+    if(matchingItem){
+      matchingItem.quantity+=1;
+    }
+    else{
+      this.cartItems.push({
+        productId: `${productId1}`,
+        quantity:1,
+        deliveryOptionId:'1'
       });
-      if(matchingItem){
-        matchingItem.quantity+=1;
-      }
-      else{
-        this.cartItems.push({
-          productId: `${productId1}`,
-          quantity:1,
-          deliveryOptionId:'1'
-        });
-      }
-      this.saveToStorage();
+    }
+    this.saveToStorage();
   }
 
   removeFromCart(productId1){
