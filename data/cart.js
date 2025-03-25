@@ -1,3 +1,74 @@
+export const cart = [];
+
+
+let cartQuantity = 0;
+let addedToCartSync =[];
+
+
+export function addToCart(){
+  document.querySelectorAll('.js-add-to-cart').forEach((element)=>{
+  
+    element.addEventListener('click',()=>{
+      let itemId = element.dataset.productId;
+      let incrementValue = 0;
+      document.querySelectorAll('.js-added-to-cart').forEach((addedToCartItem)=>{
+        if(addedToCartItem.dataset.productId === itemId){
+          addedToCartSync.forEach((syncItem)=>{
+            syncItem.addedToCartItem.classList.remove('added-to-cart-clicked');
+            if(syncItem.addedToCartTimeoutId) clearTimeout(syncItem.addedToCartTimeoutId);
+            addedToCartSync.splice(0,1);
+          });
+          
+          setTimeout(()=>{
+            addedToCartItem.classList.add('added-to-cart-clicked');
+          }, 100);
+          let addedToCartTimeoutId = setTimeout(()=>{
+            addedToCartItem.classList.remove('added-to-cart-clicked');
+          }, 2000);
+          addedToCartSync.push({
+            addedToCartItem,
+            addedToCartTimeoutId
+          });
+        }
+      });
+
+      document.querySelectorAll('.js-product-quantity-container').forEach((quantityItem)=>{
+        if (quantityItem.dataset.productId === itemId) {
+          incrementValue = Number(quantityItem.querySelector('select').value);
+        }        
+      });
+
+      let existing = false;
+      cart.forEach((cartItem)=>{
+        if(cartItem.id === itemId){
+          cartItem.quantity += incrementValue;
+          existing = true;
+        }
+      });
+      if (!existing){
+        cart.push({
+          id: element.dataset.productId,
+          quantity: incrementValue
+        });
+      }
+      cartQuantity += incrementValue;
+      updateCartQuantity();
+      console.log(cart);
+    });
+  });
+
+  
+
+}
+
+export function updateCartQuantity(){
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
+
+
+
+
 /*
 class Cart{
 
@@ -83,5 +154,3 @@ export function loadCart(fun){
   xhr.send();
 }
 */
-
-export const cart = [];
