@@ -1,10 +1,11 @@
 import {cart} from '../data/cart.js';
 
-import {products/*, Clothing*/, loadProducts} from '../data/products.js';
+import {products/*, Clothing, loadProducts*/} from '../data/products.js';
 
+console.log(products);
 let productHTML = '';
 
-loadProducts(renderProductsGrid);
+//loadProducts(renderProductsGrid);
 
 function renderProductsGrid(){
   updateCartQuantity();
@@ -21,15 +22,14 @@ function renderProductsGrid(){
         </div>
 
         <div class="product-rating-container">
-          <img class="product-rating-stars"
-            src="${product.getStarsUrl()}">
+          <img class="product-rating-stars" src="././images/ratings/rating-${(product.rating.stars*10)}.png">
           <div class="product-rating-count link-primary">
             ${product.rating.count}
           </div>
         </div>
 
         <div class="product-price">
-          ${product.getPrice()}
+          ${(product.priceCents/100).toFixed(2)}
         </div>
 
         <div class="product-quantity-container">
@@ -52,7 +52,6 @@ function renderProductsGrid(){
           ''       
         }
 
-        ${product.getSizeChartLink()}
 
         <div class="product-spacer"></div>
 
@@ -70,12 +69,13 @@ function renderProductsGrid(){
     `;
   });
 
+  document.querySelector('.js-products-grid').innerHTML = productHTML;
+
   function updateCartQuantity(){
     let cartQuantity = 0;
     document.querySelector('.js-cart-quantity').innerHTML = `${cart.cartItems.length}`;
   }
   
-  document.querySelector('.js-products-grid').innerHTML = productHTML;
 
   document.querySelectorAll('.js-add-to-cart').forEach((addToCartElement)=>{
     addToCartElement.addEventListener('click',()=>{
@@ -86,3 +86,5 @@ function renderProductsGrid(){
     });
   });
 }
+
+renderProductsGrid();

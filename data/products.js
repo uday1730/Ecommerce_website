@@ -1,5 +1,6 @@
 import { formatCurrencey } from "../utils/money.js";
 
+/*
 export function getProduct(productId){
   let matchingItem;
   products.forEach((productObject)=>{
@@ -38,8 +39,9 @@ export class Product {
     return '';
   }
 }
+*/
 
-/*export*/ class Clothing extends Product{
+/*exportclass Clothing extends Product{
   sizeChartLink;
 
   constructor(productDetails){
@@ -53,9 +55,10 @@ export class Product {
     `;
   }
 }
+*/
 
-export let products = [];
-
+//export let products = [];
+/*
 export function loadProductsFetch(){
   const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
     return response.json();
@@ -71,9 +74,9 @@ export function loadProductsFetch(){
     console.log("Products");
   })/*.catch(()=>{
     console.log("Unexpected Error.\nPlease try again 😊");
-  });*/
+  });
   return promise;
-}
+}*/
 
 /*
 loadProductsFetch().then(()=>{
@@ -81,6 +84,7 @@ loadProductsFetch().then(()=>{
 });
 */
 
+/*
 export function loadProducts(callbackFunction){
   const xhr = new XMLHttpRequest();
 
@@ -107,8 +111,8 @@ export function loadProducts(callbackFunction){
 }
 
 loadProducts();
+*/
 
-/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -768,12 +772,11 @@ export const products = [
       "mens"
     ]
   }
-].map((productDetails)=>{
+]/*.map((productDetails)=>{
   if(productDetails.type === 'clothing'){
     return new Clothing(productDetails);
   }
   else{
     return new Product(productDetails);
   }
-});
-*/
+});*/
