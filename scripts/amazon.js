@@ -30,7 +30,7 @@ function renderProductsGrid(){
           $${(product.priceCents/100).toFixed(2)}
         </div>
         <div class="product-quant-size js-product-quant-size">
-          <div class="product-quantity-container">
+          <div class="product-quantity-container js-product-quantity-container" data-product-id="${product.id}">
             <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
@@ -51,10 +51,9 @@ function renderProductsGrid(){
           //product instanceof Clothing ? product.getSizeChartLink() : '' 
           ''       
         }
-        
+      
 
-
-        <div class="added-to-cart">
+        <div class="added-to-cart js-added-to-cart" data-product-id="${product.id}">
           <img src="images/icons/checkmark.png">
           Added
         </div>
@@ -67,8 +66,11 @@ function renderProductsGrid(){
       </div>
     `;
   });
-
   document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+
+  
+
 
   let cartQuantity = 0;
 
@@ -77,28 +79,56 @@ function renderProductsGrid(){
   }
   updateCartQuantity();
 
-
+  let addedToCartSync =[];
   document.querySelectorAll('.js-add-to-cart').forEach((element)=>{
+    
     element.addEventListener('click',()=>{
+      let itemId = element.dataset.productId;
+      let incrementValue = 0;
+      document.querySelectorAll('.js-added-to-cart').forEach((addedToCartItem)=>{
+        if(addedToCartItem.dataset.productId === itemId){
+          addedToCartSync.forEach((syncItem)=>{
+            syncItem.addedToCartItem.classList.remove('added-to-cart-clicked');
+            if(syncItem.addedToCartTimeoutId) clearTimeout(syncItem.addedToCartTimeoutId);
+            addedToCartSync.splice(0,1);
+          });
+          
+          setTimeout(()=>{
+            addedToCartItem.classList.add('added-to-cart-clicked');
+          }, 100);
+          let addedToCartTimeoutId = setTimeout(()=>{
+            addedToCartItem.classList.remove('added-to-cart-clicked');
+          }, 2000);
+          addedToCartSync.push({
+            addedToCartItem,
+            addedToCartTimeoutId
+          });
+        }
+      });
+
+      document.querySelectorAll('.js-product-quantity-container').forEach((quantityItem)=>{
+        if (quantityItem.dataset.productId === itemId) {
+          incrementValue = Number(quantityItem.querySelector('select').value);
+        }        
+      });
+
       let existing = false;
       cart.forEach((cartItem)=>{
-        if(cartItem.id === element.dataset.productId){
-          cartItem.quantity += 1;
+        if(cartItem.id === itemId){
+          cartItem.quantity += incrementValue;
           existing = true;
         }
       });
       if (!existing){
         cart.push({
           id: element.dataset.productId,
-          quantity: 1
+          quantity: incrementValue
         });
       }
-      cartQuantity += 1;
+      cartQuantity += incrementValue;
       updateCartQuantity();
     });
   });
-
-  
 
   
 }
