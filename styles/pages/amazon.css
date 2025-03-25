@@ -124,10 +124,13 @@
 
 .product-quantity-container {
   margin-bottom: 17px;
+  margin-right: 50px;
+  display:inline;
 }
 
 .product-spacer {
   flex: 1;
+  display:inline;
 }
 
 .added-to-cart {

@@ -2,13 +2,12 @@ import {cart} from '../data/cart.js';
 
 import {products/*, Clothing, loadProducts*/} from '../data/products.js';
 
-console.log(products);
 let productHTML = '';
 
 //loadProducts(renderProductsGrid);
 
 function renderProductsGrid(){
-  updateCartQuantity();
+  //updateCartQuantity();
   products.forEach((product)=>{
     productHTML+=`
       <div class="product-container">
@@ -29,22 +28,24 @@ function renderProductsGrid(){
         </div>
 
         <div class="product-price">
-          ${(product.priceCents/100).toFixed(2)}
+          $${(product.priceCents/100).toFixed(2)}
         </div>
-
-        <div class="product-quantity-container">
-          <select>
-            <option selected value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+        <div class="product-quant-size js-product-quant-size">
+          <div class="product-quantity-container">
+            <select>
+              <option selected value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          ${getSizeChartLink(product)}
         </div>
 
         ${
@@ -53,7 +54,8 @@ function renderProductsGrid(){
         }
 
 
-        <div class="product-spacer"></div>
+        
+
 
         <div class="added-to-cart">
           <img src="images/icons/checkmark.png">
@@ -71,7 +73,7 @@ function renderProductsGrid(){
 
   document.querySelector('.js-products-grid').innerHTML = productHTML;
 
-  function updateCartQuantity(){
+ /*function updateCartQuantity(){
     let cartQuantity = 0;
     document.querySelector('.js-cart-quantity').innerHTML = `${cart.cartItems.length}`;
   }
@@ -84,7 +86,37 @@ function renderProductsGrid(){
       updateCartQuantity();
 
     });
+  });*/
+
+  document.querySelectorAll('.js-add-to-cart').forEach((element)=>{
+    element.addEventListener('click',()=>{
+      let existing = false;
+      cart.forEach((cartItem)=>{
+        if(cartItem.id === element.dataset.productId){
+          cartItem.quantity += 1;
+          existing = true;
+        }
+      });
+      if (!existing){
+        cart.push({
+          id: element.dataset.productId,
+          quantity: 1
+        });
+      }
+      console.log(cart);
+    });
   });
 }
 
 renderProductsGrid();
+
+function getSizeChartLink(product){
+  if (product.sizeChartLink){
+    const chartsize = `<div class="product-spacer">
+          <a href="${product.sizeChartLink}">Size</a>
+        </div>`;
+    return chartsize;
+  }
+  return '';
+}
+
