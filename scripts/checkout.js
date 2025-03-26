@@ -1,4 +1,4 @@
-import{cart, cartQuantity} from "../data/cart.js";
+import{cart, cartQuantity, saveCartToLocalStorage} from "../data/cart.js";
 import{products} from "../data/products.js";
 import{formatCurrencey} from "../utils/money.js";
 
@@ -12,6 +12,7 @@ function emptyCart(){
     return 1
   }
 }
+
 
 function renderCheckoutPage(){
   if(emptyCart()) return
@@ -119,11 +120,16 @@ function renderCheckoutPage(){
         }
       });
 
-      if(emptyCart()) return;
+      if(emptyCart()){
+        console.log("Cart is empty");
+        
+      }
       else{
         let removeElement = document.querySelector(`.js-cart-item-container-${deleteElement.dataset.productId}`);
         removeElement.remove();
       }
+      updateHeaderCartQuantity();
+      saveCartToLocalStorage();
       
     });
   });
