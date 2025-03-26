@@ -3,7 +3,6 @@ export const cart = JSON.parse(localStorage.getItem('cart'));
 let addedToCartSync =[];
 
 export function saveCartToLocalStorage(){
-  console.log(cart);
   localStorage.setItem('cart',JSON.stringify(cart));
 }
 
@@ -69,7 +68,9 @@ export function cartQuantity(){
 } 
 
 export function updateCartQuantity(){
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity();
+  if(!cartQuantity()) return
+  else if(cartQuantity()>99) document.querySelector('.js-cart-quantity').innerHTML = "99+";
+  else document.querySelector('.js-cart-quantity').innerHTML = cartQuantity();
 }
 
 

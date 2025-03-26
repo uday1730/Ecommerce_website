@@ -2,6 +2,21 @@ body{
   background-color: black;
   color: white;
 }
+
+.css-update-input{
+  width: 30px;
+}
+
+.save-quantity-link{
+  color:yellow;
+  cursor:pointer;
+}
+
+.off-update-supplies{
+  display:none;
+}
+
+
 .main {
   max-width: 1100px;
   padding-left: 30px;
