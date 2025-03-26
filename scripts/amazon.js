@@ -1,10 +1,11 @@
 import {cart, addToCart, updateCartQuantity} from '../data/cart.js';
 
+import {formatCurrencey} from"../utils/money.js";
+
 import {products/*, Clothing, loadProducts*/} from '../data/products.js';
 
 let productHTML = '';
 
-//loadProducts(renderProductsGrid);
 
 function renderProductsGrid(){
   products.forEach((product)=>{
@@ -27,7 +28,7 @@ function renderProductsGrid(){
         </div>
 
         <div class="product-price">
-          $${(product.priceCents/100).toFixed(2)}
+          $${formatCurrencey(product.priceCents)}
         </div>
         <div class="product-quant-size js-product-quant-size">
           <div class="product-quantity-container js-product-quantity-container" data-product-id="${product.id}">
@@ -68,12 +69,10 @@ function renderProductsGrid(){
   });
   document.querySelector('.js-products-grid').innerHTML = productHTML;
 
-
+  addToCart();
 
   updateCartQuantity();  
-
-  addToCart();
-  
+    
 }
 
 renderProductsGrid();
