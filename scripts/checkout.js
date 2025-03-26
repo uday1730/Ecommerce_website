@@ -6,13 +6,15 @@ import{formatCurrencey} from "../utils/money.js";
 function updateHeaderCartQuantity(){
   document.querySelector('.js-header-cart-quantity').innerHTML = `${cartQuantity()} items`;
 }
-
-
-function renderCheckoutPage(){
+function emptyCart(){
   if(!cart.length){
     document.querySelector('.js-order-summary').innerHTML= "<div>Cart is empty</div>";
-    return
+    return 1
   }
+}
+
+function renderCheckoutPage(){
+  if(emptyCart()) return
   let checkoutHTML = "";
   cart.forEach((cartItem)=>{
     let productObject;
@@ -25,7 +27,7 @@ function renderCheckoutPage(){
 
     checkoutHTML += `
       
-      <div class="cart-item-container">
+      <div class="cart-item-container js-cart-item-container-${productObject.id}">
           <div class="delivery-date">
             Delivery date: Tuesday, June 21
           </div>
@@ -116,8 +118,13 @@ function renderCheckoutPage(){
           cart.splice(index,1);
         }
       });
+
+      if(emptyCart()) return;
+      else{
+        let removeElement = document.querySelector(`.js-cart-item-container-${deleteElement.dataset.productId}`);
+        removeElement.remove();
+      }
       
-      renderCheckoutPage();
     });
   });
 
