@@ -1,8 +1,9 @@
+
 .checkout-header {
   height: 60px;
   padding-left: 30px;
   padding-right: 30px;
-  background-color: white;
+  background-color: black; 
 
   display: flex;
   justify-content: center;

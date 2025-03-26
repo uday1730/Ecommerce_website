@@ -3,16 +3,17 @@ import{products} from "../data/products.js";
 import{formatCurrencey} from "../utils/money.js";
 
 
-
 function updateHeaderCartQuantity(){
   document.querySelector('.js-header-cart-quantity').innerHTML = `${cartQuantity()} items`;
 }
 
-updateHeaderCartQuantity();
-
-let checkoutHTML = "";
 
 function renderCheckoutPage(){
+  if(!cart.length){
+    document.querySelector('.js-order-summary').innerHTML= "<div>Cart is empty</div>";
+    return
+  }
+  let checkoutHTML = "";
   cart.forEach((cartItem)=>{
     let productObject;
 
@@ -47,7 +48,7 @@ function renderCheckoutPage(){
                 <span class="update-quantity-link link-primary">
                   Update
                 </span>
-                <span class="delete-quantity-link link-primary">
+                <span class="delete-quantity-link link-primary js-delete-button" data-product-id=${productObject.id}>
                   Delete
                 </span>
               </div>
@@ -60,7 +61,7 @@ function renderCheckoutPage(){
               <div class="delivery-option">
                 <input type="radio" checked
                   class="delivery-option-input"
-                  name="delivery-option-1">
+                  name="delivery-option-${productObject.id}">
                 <div>
                   <div class="delivery-option-date">
                     Tuesday, June 21
@@ -73,7 +74,7 @@ function renderCheckoutPage(){
               <div class="delivery-option">
                 <input type="radio"
                   class="delivery-option-input"
-                  name="delivery-option-1">
+                  name="delivery-option-${productObject.id}">
                 <div>
                   <div class="delivery-option-date">
                     Wednesday, June 15
@@ -86,7 +87,7 @@ function renderCheckoutPage(){
               <div class="delivery-option">
                 <input type="radio"
                   class="delivery-option-input"
-                  name="delivery-option-1">
+                  name="delivery-option-${productObject.id}">
                 <div>
                   <div class="delivery-option-date">
                     Monday, June 13
@@ -99,11 +100,29 @@ function renderCheckoutPage(){
             </div>
           </div>
         </div>
-
+        
       `;
   });
+
+
   document.querySelector('.js-order-summary').innerHTML= checkoutHTML;
+  updateHeaderCartQuantity();
+  
+  document.querySelectorAll('.js-delete-button').forEach((deleteElement)=>{
+    deleteElement.addEventListener('click',()=>{
+      console.log(deleteElement.dataset.productId);
+      cart.forEach((cartItem, index)=>{
+        if (deleteElement.dataset.productId === cartItem.id) {
+          cart.splice(index,1);
+        }
+      });
+      
+      renderCheckoutPage();
+    });
+  });
 
 }
 
 renderCheckoutPage();
+
+
