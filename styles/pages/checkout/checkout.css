@@ -172,6 +172,7 @@ body{
 
 .delivery-option-date {
   color: rgb(0, 118, 0);
+  color: white;
   font-weight: 500;
   margin-bottom: 3px;
 }
