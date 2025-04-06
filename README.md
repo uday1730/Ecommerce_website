@@ -9,7 +9,6 @@ Designed with a focus on **interactivity and seamless user experience**, this we
 ## **Key Features**  
 - **Dynamic Product Listings:** Products are loaded from a predefined backend, supporting easy updates and changes.  
 - **Interactive Cart System:** Items can be added, removed, or updated with real-time price and delivery updates.  
-- **Size Chart for Fashion:** Users can view accurate size information before placing an order.  
 - **Persistent Storage:** Cart and order data is saved using local storage to prevent data loss on reload.  
 - **Order Management:** Orders are generated and stored after checkout, simulating a purchase history.  
 
