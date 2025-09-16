@@ -8,17 +8,17 @@ Designed with a focus on **interactivity and seamless user experience**, this we
 
 ### Key Features
 
-  * [cite\_start]**Dynamic Product Listings**: The website loads product information from a predefined backend, making it easy to add or update items without changing the website's code[cite: 31, 33].
-  * **Interactive Cart System**: Users can add, remove, and modify items in their cart. [cite\_start]The cart dynamically updates the total price, item count, and delivery details in real time[cite: 32, 33].
-  * **Persistent Storage**: The cart and order data are saved using the browser's local storage. [cite\_start]This ensures that the user's information isn't lost if they reload the page or close the browser[cite: 33].
-  * **Order Management**: After a user checks out, their order is generated and stored, simulating a purchase history for future reference.
-  * [cite\_start]**User-Oriented Design**: The website is built with a focus on providing a seamless and interactive user experience, mimicking a professional e-commerce platform[cite: 31, 33].
+* **Dynamic Product Listings**: The website loads product information from a predefined backend, making it easy to add or update items without changing the website's code.  
+* **Interactive Cart System**: Users can add, remove, and modify items in their cart. The cart dynamically updates the total price, item count, and delivery details in real time.  
+* **Persistent Storage**: The cart and order data are saved using the browser's local storage. This ensures that the user's information isn't lost if they reload the page or close the browser.  
+* **Order Management**: After a user checks out, their order is generated and stored, simulating a purchase history for future reference.  
+* **User-Oriented Design**: The website is built with a focus on providing a seamless and interactive user experience, mimicking a professional e-commerce platform.  
 
 ### How It Works
 
 The e-commerce website operates as a single-page application (SPA) simulation across multiple HTML files.
 
-1.  [cite\_start]**Product Display**: The `index.html` (homepage) uses JavaScript to fetch product data from a simulated backend and dynamically render the listings on the page[cite: 31].
+1.  **Product Display**: The `index.html` (homepage) uses JavaScript to fetch product data from a simulated backend and dynamically render the listings on the page.
 2.  **Adding to Cart**: When a user clicks "Add to Cart," a JavaScript function captures the product details and saves them to local storage.
 3.  **Cart Interaction**: The `checkout.html` page's JavaScript reads the stored data, calculates totals, and displays the items. Any changes made by the user are instantly reflected on the page and in local storage.
 4.  **Order Placement**: On the checkout page, a final JavaScript function processes the order, clearing the cart and moving the data into a new local storage entry for order history.
