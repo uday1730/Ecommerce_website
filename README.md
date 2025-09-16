@@ -31,7 +31,7 @@ This guide will help you set up and run the e-commerce website on your local mac
 #### Prerequisites
 
   * A modern web browser (like Chrome, Firefox, or Edge).
-  * No specific backend software or server is required as the project is purely front-end and uses local storage for data persistence.
+  * The project uses a predefined backend to load product data from the server. Optionally, a local backend can be integrated for development or customization purposes.
 
 #### Running the System
 
@@ -65,6 +65,6 @@ This guide will help you set up and run the e-commerce website on your local mac
   * **User Authentication**: Implement a secure user login and registration system to personalize the shopping experience.
   * **Payment Gateway Integration**: Add a payments page to process transactions securely.
   * **User Order History**: Create a dedicated page for users to view their complete order history.
-  * **Advanced Features**: Introduce features like a product search bar, filtering options, and user reviews to enhance functionality.
+  * **Advanced Features**: Introduce features like a filtering options, and user reviews to enhance functionality.
 
 Heres the link: https://uday1730.github.io/Ecommerce_website/
