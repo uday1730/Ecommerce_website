@@ -1,4 +1,4 @@
-import {cart, cartQuantity, saveCartToLocalStorage} from "../data/cart.js";
+import {cart, cartQuantity, saveCartToLocalStorage, updateDeliveryOptionsCart} from "../data/cart.js";
 import {products} from "../data/products.js";
 import {formatCurrencey} from "../utils/money.js";
 import {deliveryOptions} from "../data/deliveryOptions.js";
@@ -29,11 +29,25 @@ function renderCheckoutPage(){
       }
     });
 
+    let matchingDeliveryObject;
+
+    deliveryOptions.forEach((option)=>{
+      if (option.id === cartItem.deliveryId){
+        matchingDeliveryObject = option;
+      }
+    });
+    
+    let num = Number(matchingDeliveryObject.addCount);
+    console.log(num);
+
+    let deliveryString = dayjs().add(num, 'days').format('dddd, MMMM DD');
+    console.log(deliveryString);
+
     checkoutHTML += `
       
       <div class="cart-item-container js-cart-item-container-${productObject.id}">
           <div class="delivery-date">
-            Delivery date: Tuesday, June 21
+            Delivery date: ${deliveryString}
           </div>
 
           <div class="cart-item-details-grid">
@@ -140,6 +154,18 @@ function renderCheckoutPage(){
     });
   });
 
+  //Code for Updating Delivery Dates
+  document.querySelectorAll('.js-delivery-option').forEach((deliveryItem)=>{
+    deliveryItem.addEventListener('click',()=>{
+      
+      const productId = deliveryItem.dataset.productId;
+      const deliveryId = deliveryItem.dataset.deliveryId;
+      console.log(deliveryId)
+      updateDeliveryOptionsCart( productId, deliveryId);
+      renderCheckoutPage();
+
+    })
+  });
 }
 
 renderCheckoutPage();
@@ -148,16 +174,17 @@ function delivery_options(productObject,cartItem){
   let html = "";
   let matchingDeliveryId;
   deliveryOptions.forEach((option)=>{
-    const dateString = dayjs().add(option.add_count, 'days').format('dddd, MMMM DD');
+    const dateString = dayjs().add(option.addCount, 'days').format('dddd, MMMM DD');
 
     const priceString = option.priceCents ? `$${formatCurrencey(option.priceCents)}` : 'FREE';
 
     const isChecked = option.id === cartItem.deliveryId? 'checked' : '';
     
     html += `
-    <div class="delivery-option">
+    <div class="delivery-option js-delivery-option" data-product-id="${productObject.id}"
+        data-delivery-id="${option.id}">
       <input type="radio" ${isChecked}
-        class="delivery-option-input"
+        class="delivery-option-input "
         name="delivery-option-${productObject.id}">
       <div>
         <div class="delivery-option-date">

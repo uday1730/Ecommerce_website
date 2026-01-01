@@ -1,15 +1,15 @@
 export const deliveryOptions = [
 {
   id: 1,
-  add_count: 7,
+  addCount: 7,
   priceCents: 0
 },{
   id: 2,
-  add_count: 3,
+  addCount: 3,
   priceCents: 499
 },{
   id: 3,
-  add_count: 1,
+  addCount: 1,
   priceCents: 999
 }
 ];
